@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Frontend</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Frontend Connected to FastAPI</h1>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="Enter your name"
+    >
+
+    <button onclick="sendData()">
+        Send
+    </button>
+
+    <div id="result"></div>
+
+    <script>
+
+        async function sendData() {
+
+            const userInput =
+                document.getElementById("userInput").value;
+
+            const response = await fetch(
+                `http://127.0.0.1:8000/greet/${userInput}`
+            );
+
+            const data = await response.json();
+
+            document.getElementById("result").innerText =
+                data.response;
+        }
+
+    </script>
+
+</body>
+
+</html>
